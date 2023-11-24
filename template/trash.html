@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trash</title>
+</head>
+<body>
+    <h2>Trash</h2>
+    
+    <form method="POST" action="">
+        <table border="2">
+            <tr>
+                <th>Sender_Name</th>
+                <th>Message</th>
+                <th>date</th>
+                <th>Time</th>
+                <th>Action</th>
+            </tr>
+            {% for t in trash %}
+            <tr>
+                <td>{{t.Message.Sender.Username}}</td>
+                <td>{{t.Message.Message}}</td>
+                <td>{{t.Date}}</td>
+                <td>{{t.Time}}</td>
+                <td><a href="{% url 'deleteMessage' t.id %}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+    
+</body>
+</html>

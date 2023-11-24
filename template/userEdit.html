@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Edit</title>
+    <script src="/static/jquery-1.8.3.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#country").change(function(){
+                var cid=$("#country").val()
+                $.ajax({
+                    url:"{% url 'getstate' %}",
+                    data:{'country':cid},
+                    success:function(data){
+                        $("#state").html(data)
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <h2>User Edit</h2>
+    <h4>{{request.session.Username}}</h4>
+    <form method="POST" action="{% url 'editprofileAction' %}">
+        {% csrf_token %}
+        {% for v in view %}
+        <table>
+            <tr>
+                
+                <th>Name:</th>
+                <td><input type="text" name="name" value="{{v.Name}}"></td>
+            </tr>
+            <tr>
+                <th>DOB</th>
+                <td><input type="date" name="dob" value="{{v.DOB}}"></td>
+            </tr>
+            <tr>
+                <th>Gender:</th>
+                <td>
+                {%if v.Gender == 'male' %}
+                Male
+                <input type="radio" name="gender" id="Gender" value="male" checked='true'>
+                Female
+                <input type="radio" name="gender" id="Gender" value="female" ></p>
+                {% else  %}
+                Male
+                <input type="radio" name="gender" id="Gender" value="male" >
+                Female
+                <input type="radio" name="gender" id="Gender" value="female" checked='true'></p>
+                {%endif%}
+                </td>
+            </tr>
+            <tr>
+                <th>Address:</th>
+                <td><textarea name="address"  cols="30" rows="10">{{v.Address}}</textarea></td>
+            </tr>
+            <tr>
+                <th>Phone_Number:</th>
+                <td><input type="text" name="phone" value="{{v.Phone}}"></td>
+            </tr>
+            <tr>
+                <th>Security_question</th>
+                <td><select name="question" >
+                    <option value="{{v.Security_question}}">{{v.Security_question}}</option>
+                    <option value="What is your pet_name">What is your pet name</option>
+                    <option value="What is your favourite food">What is your favourite food</option>
+                    <option value="What is your nickname">What is your nickname</option>
+                </select></td>
+            </tr>
+            <tr>
+                <th>Answer:</th>
+                <td><input type="text" name="answer" value="{{v.Answer}}"></td>
+            </tr>
+            
+            <tr>
+                <th>Country:</th>
+                <td><Select name="country" id="country">
+                    <option value="{{v.Country.id}}">{{v.Country.Name}}</option>
+                    {% for u in countries %}
+                    <option value="{{u.id}}">{{u.Name}}</option>
+                    {% endfor %}
+                </select></td>
+                <th>State:</th>
+                <td><select name="state" id="state">
+                    <option value="{{v.State.id}}">{{v.State.Name}}</option>
+                    {% for s in state %}
+                    <option value="{{s.State.id}}">{{s.Name}}</option>
+                    {% endfor %}
+                   
+                </select></td>
+            </tr>
+            <tr>
+                <th>Hobbies:</th>
+                <td>
+                    {% for v in hby %}
+                    <input type="checkbox"  name="hobby"
+                    {% for h in hobbies %}   value="{{v.id}}"{{v.Name}}
+                    {% if v.id == h.Hobbies.id %} 
+                    checked='true'
+                    {% endif %}
+                    {% endfor %}
+                    >{{v.Name}}
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>Username:</th>
+                <td><input type="text" name="username" value="{{v.Username}}"></td>
+            </tr>
+            <tr>
+                <th>Password:</th>
+                <td><input type="password" name="password" value="{{v.Password}}"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="submit"></td>
+            </tr>
+        </table>
+        {% endfor %}
+    </form>
+    
+</body>
+{%if messages %}
+{%for msg in messages%}
+<script>
+    alert('{{msg}}')
+</script>
+{%endfor%}
+{%endif%}
+</html>

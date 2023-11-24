@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>season</title>
+</head>
+<body>
+    <h2>Season</h2>
+    
+    <form method="POST" action="{% url 'seasonAction' %}">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th>Name</th>
+                <td><input type="text" name="season"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Add"></td>
+            </tr>
+        </table>
+    </form>
+
+    
+</body>
+</html>

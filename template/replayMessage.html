@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Replay</title>
+</head>
+<body>
+    <h2>Replay Message</h2>
+    
+    <h2>{{request.session.Username}}</h2>
+    <form method="POST" action="{% url 'replayMessageAction' %}">
+        {% csrf_token %}
+        {% for v in view %}
+        <table>
+            <input type="hidden" name="id">
+            <tr>
+                <th>Receiver_name</th>
+                <td><input type="text" name="name" value="{{v.Sender.Username}}" readonly></td>
+            </tr>
+            <tr>
+                <th>Subject</th>
+                <td><input type="text" name="subject" value="{{v.Subject}}"></td>
+            </tr>
+            <tr>
+                <th>Message</th>
+                <td><textarea name="message"  cols="30" rows="10" readonly>{{v.Message}}</textarea></td>
+            </tr>
+            <tr>
+                <th>Replay_Message</th>
+                <td><textarea name="remsg"  cols="30" rows="10"></textarea></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Replay"></td>
+            </tr>
+        </table>
+        {% endfor %}
+    </form>
+    
+</body>
+
+</html>

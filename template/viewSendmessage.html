@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Message</title>
+</head>
+<body>
+    <h2>Messages</h2>
+    <h4>{{request.session.Username}}</h4>
+
+    <table border="1">
+        <tr>
+            <th>Receiver_Name</th>
+            <th>Subject</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Message</th>
+            
+            <th colspan="2">Action</th>
+        </tr>
+        {% for v in view %}
+        <tr>
+            <td>{{v.Receiver.Username}}</td>
+            <td>{{v.Subject}}</td>
+            <td>{{v.Date}}</td>
+            <td>{{v.Time}}</td>
+            <td>{{v.Message}}</td>
+           
+            <td><a href="{% url 'deletemsg' v.id %}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+</body>
+</html>

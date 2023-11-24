@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blacklist view</title>
+</head>
+<body>
+    <h2>Blacklist</h2>
+    <h4>{{request.session.Username}}</h4>
+
+    <form method="POST" action="">
+        <table border="1">
+            <tr>
+                <th>Contact</th>
+                <th>Name</th>
+                <th>Remarks</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Action</th>
+            </tr>
+            {% for v in view %}
+            <tr>
+                <td>{{v.Contact.Username}}</td>
+                <td>{{v.Name}}</td>
+                <td>{{v.Remarks}}</td>
+                <td>{{v.Date}}</td>
+                <td>{{v.Time}}</td>
+                <td><a href="{% url 'deleteBlacklist' v.id %}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+
+</body>
+</html>

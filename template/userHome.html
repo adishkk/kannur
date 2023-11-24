@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User home</title>
+</head>
+<body>
+    <h2>User Home</h2>
+    <h4>{{request.session.Username}}</h4>
+
+    <h3><a href="{% url 'message' %}">Message</a></h3>
+    <h3><a href="{% url 'sendMessage' %}">Send Messages</a></h3>
+    <h3><a href="{% url 'Userinbox' %}">Inbox</a></h3>
+    <h3><a href="{% url 'viewTrash' %}">Trash</a></h3>
+    <h3><a href="{% url 'contact' %}">Contact</a></h3>
+    <h3><a href="{% url 'contactView' %}">View Added Contact</a></h3>
+    <h3><a href="{% url 'blacklistContact' %}">Black List</a></h3>
+    <h3><a href="{% url 'viewBlacklist' %}">View Blacklist</a></h3>
+    <h3><a href="{% url 'customerFactor' %}">Customer Factor</a></h3>
+    <h3><a href="{% url 'ageFactor' %}">Age Factor</a></h3>
+    <h3><a href="{% url 'customerSeason' %}">Customer Season factor</a></h3>
+    <h3><a href="{% url 'viewSpam' %}">View spam</a></h3>
+    <h3><a href="{% url 'Editprofile' %}">Edit Profile</a>
+    </h3>
+    <h3><a href="{% url 'logout' %}">Logout</a></h3>
+</body>
+</html>

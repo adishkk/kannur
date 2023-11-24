@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Contact</title>
+</head>
+<body>
+    <h2>Contact</h2>
+    <h4> {{request.session.Username}}</h4>
+    
+    <form method="POST" action="">
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Contact_id</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Remarks</th>
+                <th>Action</th>
+                <th>BlackList</th>
+            </tr>
+            {% for v in con %}
+            <tr>
+                <td>{{v.Name}}</td>
+                <td>{{v.Contact.Username}}</td>
+                <td>{{v.Date}}</td>
+                <td>{{v.Time}}</td>
+                <td>{{v.Remarks}}</td>
+                <td><a href="{% url 'deleteContact' v.id %}">Delete</a>
+                </td>
+                <td><a href="{% url 'blacklistContactMove' v.id %}">Move to blacklist</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+    
+</body>
+{%if messages %}
+{%for msg in messages%}
+<script>
+    alert('{{msg}}')
+</script>
+{%endfor%}
+{%endif%}
+</html>

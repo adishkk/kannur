@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inbox</title>
+</head>
+<body>
+    <h2>Inbox</h2>
+    <h4>{{request.session.Username}}</h4>
+
+    <form method="POST" action="{% url 'msgTrash' %}">
+
+        {% csrf_token %}
+    <table border="1">
+        <tr>
+            <th>Sender_Name</th>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Action</th>
+            <th colspan="2">Forward_Action</th>
+        </tr>
+        {% for i in inbox %}
+        <tr>
+            <td>{{i.Sender.Username}}</td>
+            <td>{{i.Subject}}</td>
+            <td>{{i.Message}}</td>
+            <td>{{i.Date}}</td>
+            <td>{{i.Time}}</td>
+            <td><input type="checkbox" name="checkbox" value="{{i.id}}"></td>
+            <td><a href="{% url 'forwardMessage' i.id %}">Forward</a></td>
+            <td><a href="{% url 'replayMessage' i.id %}">Replay</a></td>
+
+            
+        </tr>
+     
+        {% endfor %}
+    </table>
+    <input type="submit" value="Move to trash">
+    </form>
+</body>
+{%if messages %}
+{%for msg in messages%}
+<script>
+    alert('{{msg}}')
+</script>
+{%endfor%}
+{%endif%}
+</html>

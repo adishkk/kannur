@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Factor</title>
+</head>
+<body>
+    <h2>Age Factor</h2>
+    <form method="POST" action="{% url 'agefactorAction' %}">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th>Minimum_age</th>
+                <td><input type="text" name="min_age"></td>
+            </tr>
+            <tr>
+                <th>Maximum_age</th>
+                <td><input type="text" name="max_age"></td>
+            </tr>
+            <tr>
+                <th>Factor_name:</th>
+                <td><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <th><input type="submit" value="Add Factor"></th>
+            </tr>
+        </table>
+    </form>
+    
+</body>
+{%if messages %}
+{%for msg in messages%}
+<script>
+    alert('{{msg}}')
+</script>
+{%endfor%}
+{%endif%}
+</html>

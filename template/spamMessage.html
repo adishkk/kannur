@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>spam msg</title>
+</head>
+<body>
+    <h4>{{request.session.Username}}</h4>
+    <h3>Spam Message</h3>
+    <form method="POST" action="">
+        <table border="1">
+            <tr>
+                <th>Message</th>
+                <th>Subject</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Action</th>
+            </tr>
+            {% for v in msg %}
+            <tr>
+                <td>{{v.Message}}</td>
+                <td>{{v.Subject}}</td>
+                <td>{{v.Date}}</td>
+                <td>{{v.Time}}</td>
+                <td><a href="{% url 'deleteSpam' v.id %}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+</html>

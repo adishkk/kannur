@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form method="POST" action="{% url 'loginAction' %}">
+        {% csrf_token %}
+<table>
+    <tr>
+        <th>Username</th>
+        <td><input type="text" name="username"></td>
+    </tr>
+    <tr>
+        <th>Password</th>
+        <td><input type="password" name="password"></td>
+    </tr>
+    <tr>
+        <td><input type="submit" value="login"></td>
+    </tr>
+    <tr>
+        <td><h4><a href="{% url 'forgotPassword' %}">Forgot Password</a></td></h4>
+    </tr>
+</table>
+
+    </form>
+    
+</body>
+</html>
